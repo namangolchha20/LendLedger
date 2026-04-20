@@ -151,17 +151,6 @@ const Login = () => {
                <div className="flex-1 h-px bg-[var(--border-color)]" />
              </div>
 
-             <div className="grid grid-cols-2 gap-4">
-               <button className="flex items-center justify-center space-x-2 py-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-input)] hover:bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--active-text)] text-xs font-bold transition-all">
-                 <Chrome className="w-4 h-4" />
-                 <span>Google</span>
-               </button>
-               <button className="flex items-center justify-center space-x-2 py-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-input)] hover:bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--active-text)] text-xs font-bold transition-all">
-                 <Github className="w-4 h-4" />
-                 <span>GitHub</span>
-               </button>
-             </div>
-
             <p className="mt-10 text-center text-sm text-[var(--text-secondary)] font-medium">
               New to LendLedger?{' '}
               <Link to="/signup" className="text-blue-500 font-bold hover:text-blue-600 transition-colors">
@@ -176,4 +165,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login;
