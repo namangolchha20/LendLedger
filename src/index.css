@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light Theme Tokens */
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #FFFFFF;
+  --bg-surface: #FFFFFF;
+  --bg-input: #F1F5F9;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --border-color: #E2E8F0;
+  --active-bg: rgba(37, 99, 235, 0.1);
+  --active-text: #2563EB;
+  --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+  
+  --accent-blue: #3b82f6;
+  --accent-emerald: #10b981;
+  --accent-rose: #f43f5e;
+  --accent-amber: #f59e0b;
+}
+
+.dark {
+  /* Dark Theme Tokens */
+  --bg-primary: #0B0E14;
+  --bg-secondary: #161B26;
+  --bg-surface: #1E293B;
+  --bg-input: rgba(255, 255, 255, 0.05);
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --active-bg: rgba(59, 130, 246, 0.15);
+  --active-text: #60A5FA;
+  --shadow-premium: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-500 font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * {
+    @apply border-[var(--border-color)];
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-800 rounded-full hover:bg-slate-700;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-3xl transition-all duration-500 relative overflow-hidden;
+    box-shadow: var(--shadow-premium);
+  }
+
+  .glass-card:hover {
+    @apply border-blue-500/20 -translate-y-1;
+  }
+
+  .nav-item {
+    @apply flex items-center space-x-3 px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 text-[var(--text-muted)] hover:text-[var(--active-text)] hover:bg-[var(--active-bg)] hover:scale-[1.02] active:scale-95;
+  }
+
+  .nav-item-active {
+    @apply bg-[var(--active-bg)] text-[var(--active-text)] shadow-sm border border-blue-500/10;
+  }
+
+  .btn-premium {
+    @apply relative overflow-hidden px-6 py-3 rounded-xl font-black uppercase tracking-widest text-[10px] transition-all duration-300 flex items-center justify-center space-x-2 text-white active:scale-95;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    box-shadow: 0 8px 20px -6px rgba(37, 99, 235, 0.5);
+  }
+
+  .btn-premium:hover {
+    @apply brightness-110 -translate-y-0.5;
+    box-shadow: 0 12px 25px -8px rgba(37, 99, 235, 0.6);
+  }
+
+  .input-premium {
+    @apply w-full bg-[var(--bg-input)] border border-[var(--border-color)] rounded-xl px-4 py-3.5 text-[var(--text-primary)] font-semibold outline-none transition-all duration-300 placeholder:text-[var(--text-muted)] placeholder:opacity-50 appearance-none;
+  }
+
+  .input-premium:focus {
+    @apply border-blue-500 ring-4 ring-blue-500/10 bg-[var(--bg-secondary)];
+  }
+
+  /* Custom Select Container */
+  .select-container {
+    @apply relative cursor-pointer;
+  }
+
+  .select-menu {
+    @apply absolute top-full left-0 right-0 mt-2 bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-2xl shadow-2xl overflow-hidden z-[60] animate-modal;
+  }
+
+  .select-option {
+    @apply px-4 py-3 text-sm font-semibold text-[var(--text-secondary)] hover:bg-[var(--active-bg)] hover:text-[var(--active-text)] transition-all;
+  }
+
+  .badge-premium {
+    @apply px-3 py-1 rounded-full text-[10px] font-black tracking-wider uppercase border;
+  }
+
+  .badge-paid { @apply bg-emerald-500/10 text-emerald-500 border-emerald-500/20; }
+  .badge-pending { @apply bg-amber-500/10 text-amber-500 border-amber-500/20; }
+  .badge-overdue { @apply bg-rose-500/10 text-rose-500 border-rose-500/20; }
+
+  .noise-bg {
+    @apply absolute inset-0 pointer-events-none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.015;
+  }
+
+  .sticky-footer {
+    @apply sticky bottom-0 bg-[var(--bg-secondary)] border-t border-[var(--border-color)] p-6 z-20 backdrop-blur-md bg-opacity-80;
+  }
+}
+
+/* Animations */
+@keyframes themeTransition {
+  from { filter: blur(4px); opacity: 0.8; }
+  to { filter: blur(0); opacity: 1; }
+}
+
+.theme-transition {
+  animation: themeTransition 0.4s ease-out;
+}
+
+@keyframes modalEnter {
+  from { opacity: 0; transform: scale(0.98) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.animate-modal {
+  animation: modalEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+<<<<<<< HEAD
+}
+=======
+}
+>>>>>>> efe5013 (fix)
